@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/vue.min.js"></script>
+    <style>
+        .class1 { background-color:#ddd }
+    </style>
+</head>
+<body>
+<div id="vue_det">
+    <input type="checkbox" v-model="class1" id="r1">
+    <h1 v-bind:class="{'class1': class1}">{{ message }}</h1>
+    <h1>site : {{site}}</h1>
+    <h1>url : {{url}}</h1>
+    <h1>{{message}}</h1>
+    {{setSite()}}
+    <button v-on:click="counter += 1">增加 1</button>
+        <p>这个按钮被点击了 {{ counter }} 次。</p>
+    <button v-on:click="greet">Greet</button>
+    <ol>
+        <li v-for="site in sites">
+            {{ site.name }}
+        </li>
+    </ol>
+    <ul>
+        <li v-for="value in object">
+            {{ value }}
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="(value, key) in object">
+            {{ key }} : {{ value }}
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="(value, key, index) in object">
+            {{ index }}. {{ key }} : {{ value }}
+        </li>
+    </ul>
+
+    <li v-for="n in 10">
+        {{ n }}
+    </li>
+</div>
+<script type="text/javascript">
+   /* new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue.js!'
+        }
+    });*/
+   /* var vm = new Vue({
+        el: '#vue_det',
+        data: {
+            site: "菜鸟教程",
+            url: "www.runoob.com",
+            alexa: "10000"
+        },
+        methods: {
+            details: function() {
+                return  this.site + " - 学的不仅是技术，更是梦想！";
+            }
+        }
+    })*/
+
+    var data = {
+        site: "瑞德威网络",
+        url: "www.redwe.cn",
+        alexa: 10000,
+        message: 'Hello Vue.js!',
+        class1: false,
+        counter: 0,
+        sites: [
+            { name: 'Runoob' },
+            { name: 'Google' },
+            { name: 'Taobao' }
+        ],
+        object: {
+            name: '菜鸟教程',
+            url: 'http://www.runoob.com',
+            slogan: '学的不仅是技术，更是梦想！'
+        }
+    };
+    var vm2 = new Vue({
+        el: '#vue_det',
+        data: data,
+        methods:{
+            setSite: function(){
+                return this.site + ' 在线视频教程！';
+            },
+            greet: function (event) {
+                // `this` 在方法里指当前 Vue 实例
+                alert('Hello ' + this.name + '!')
+                // `event` 是原生 DOM 事件
+                if (event) {
+                    alert(event.target.tagName)
+                }
+            }
+        }
+    });
+   console.log(data.message);
+   console.log(vm2.$el);
+   // = vm2.methods.setSite();
+</script>
+
+</body>
+</html>
